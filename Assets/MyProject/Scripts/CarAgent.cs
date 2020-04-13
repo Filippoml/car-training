@@ -14,12 +14,15 @@ public class CarAgent : Agent
 
     private float _time;
 
+    private AgentSpawner _agentSpawner;
+
     private void Awake()
     {
         _spawnPosition = transform.parent;
         _speed = 10f;
         _rayPerception = GetComponentInChildren<RayPerception3D>();
 
+        _agentSpawner = FindObjectOfType<AgentSpawner>();
     }
 
     // Update is called once per frame
@@ -31,30 +34,22 @@ public class CarAgent : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        switch(collision.gameObject.tag)
+        if (collision.gameObject.tag == "wall")
         {
-            case "wall":
-                AddReward(-20f);
-                AgentReset();
-                break;
-
+            AddReward(-20f);
+            AgentReset();
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.gameObject.tag)
+        if (other.gameObject.tag == "end")
         {
-
-
-            case "end":
-                Debug.Log("lap completed");
-                break;
+            _agentSpawner.AddNewLapTime(_time);
+            _time = 0;
+            Debug.Log("lap completed");
+            AddReward(10f);
         }
-        AddReward(10f);
-
     }
 
     public override void AgentReset()
@@ -101,7 +96,7 @@ public class CarAgent : Agent
         // endOffset: Ending height offset of ray from center of agent
         float rayDistance = 5f;
         float[] rayAngles = { 30f, 60f, 90f, 120f, 150f };
-        string[] detectableObjects = { "wall" , "checkpoint"};
+        string[] detectableObjects = { "wall", "checkpoint" };
         AddVectorObs(_rayPerception.Perceive(rayDistance, rayAngles, detectableObjects, 0, 0f));
 
 
@@ -117,7 +112,4 @@ public class CarAgent : Agent
 
         AddReward(0.01f);
     }
-
-
-
 }
