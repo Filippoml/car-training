@@ -3,15 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : Agent
+public class CarAgent : Agent
 {
     private float _speed;
 
     [SerializeField]
     private Transform _spawnPosition;
-
-    [SerializeField]
-    private Transform _goalPosition;
 
     private RayPerception3D _rayPerception;
 
