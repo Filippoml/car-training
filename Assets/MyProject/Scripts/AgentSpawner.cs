@@ -18,10 +18,4 @@ public class AgentSpawner : MonoBehaviour
             Instantiate(_carPrefab, transform.position, Quaternion.identity, transform);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

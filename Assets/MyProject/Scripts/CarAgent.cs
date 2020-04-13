@@ -16,6 +16,7 @@ public class CarAgent : Agent
 
     private void Awake()
     {
+        _spawnPosition = transform.parent;
         _speed = 10f;
         _rayPerception = GetComponentInChildren<RayPerception3D>();
 
