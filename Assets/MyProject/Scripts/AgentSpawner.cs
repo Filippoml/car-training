@@ -26,12 +26,16 @@ public class AgentSpawner : MonoBehaviour
         }
     }
 
-    public void AddNewLapTime(float time)
+    public void AddNewLapTime(float pTime)
     {
-        if(time < _bestTime)
+        if(pTime < _bestTime || _bestTime == 0)
         {
-            _bestTime = time;
+            _bestTime = pTime;
             _lapTimeText.text = _bestTime.ToString("0.00");
+        }
+        else
+        {
+            Debug.Log("current time = " + _bestTime + ", parameter = " + pTime);
         }
     }
 }

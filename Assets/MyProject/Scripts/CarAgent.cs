@@ -25,12 +25,12 @@ public class CarAgent : Agent
         _agentSpawner = FindObjectOfType<AgentSpawner>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        //GetCumulativeReward().ToString("0.00");
-        _time += Time.deltaTime;
+        _time += Time.fixedDeltaTime;
+
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -45,9 +45,13 @@ public class CarAgent : Agent
     {
         if (other.gameObject.tag == "end")
         {
+            Debug.Log("lap completed");
             _agentSpawner.AddNewLapTime(_time);
             _time = 0;
-            Debug.Log("lap completed");
+            AddReward(50f);
+        }
+        else
+        {
             AddReward(10f);
         }
     }
@@ -94,7 +98,7 @@ public class CarAgent : Agent
         // detectableObjects: List of tags which correspond to object types agent can see
         // startOffset: Starting height offset of ray from center of agent
         // endOffset: Ending height offset of ray from center of agent
-        float rayDistance = 5f;
+        float rayDistance = 10f;
         float[] rayAngles = { 30f, 60f, 90f, 120f, 150f };
         string[] detectableObjects = { "wall", "checkpoint" };
         AddVectorObs(_rayPerception.Perceive(rayDistance, rayAngles, detectableObjects, 0, 0f));
@@ -104,12 +108,12 @@ public class CarAgent : Agent
 
     private void moveCar(float pForward, float pLeftOrRight)
     {
-        Vector3 inp = Vector3.Lerp(Vector3.zero, new Vector3(0, 0, pForward * 11.4f), 0.02f);
+        Vector3 inp = Vector3.Lerp(Vector3.zero, new Vector3(0, 0, pForward * _speed), 0.02f);
         inp = transform.TransformDirection(inp);
         transform.position += inp;
 
         transform.eulerAngles += new Vector3(0, (pLeftOrRight * 90) * 0.02f, 0);
 
-        AddReward(0.01f);
+        AddReward(0.001f);
     }
 }
