@@ -1,4 +1,5 @@
-﻿using MLAgents;
+﻿using Barracuda;
+using MLAgents;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,11 @@ public class CarAgent : Agent
 
     private AgentSpawner _agentSpawner;
 
+    public NNModel model;
+
     private void Awake()
     {
+
         _spawnPosition = transform.parent;
         _speed = 10f;
         _rayPerception = GetComponentInChildren<RayPerception3D>();

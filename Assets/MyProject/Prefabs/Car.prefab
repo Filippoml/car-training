@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 263740414258720496}
   - component: {fileID: 263740414258720497}
   m_Layer: 8
-  m_Name: Car 1
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
     agentCameras: []
     agentRenderTextures: []
     maxStep: 5000
-    resetOnDone: 1
+    resetOnDone: 0
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 5
   _spawnPosition: {fileID: 0}
-  _goalPosition: {fileID: 0}
+  model: {fileID: 5022602860645237092, guid: 1711ed5e7b92bc24e9d029b78882310f, type: 3}

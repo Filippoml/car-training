@@ -2387,7 +2387,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3265,10 +3265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adff985ccc98b3f4f9ca78e5b3448ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numAgents: 5
   _carPrefab: {fileID: 7054112150555137424, guid: fb2a761f8e9fe764aa53dea750b16e9d,
     type: 3}
   _lapTimeText: {fileID: 964839734}
+  _agentSpawnerDrawerManager:
+    num: 2
+    UsingModel: 0
 --- !u!4 &1256393466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2305130482025798369, guid: 8ea7b7023c773ef4589ec3dd3ee00d50,
@@ -4760,8 +4762,7 @@ MonoBehaviour:
   broadcastHub:
     broadcastingBrains:
     - {fileID: 11400000, guid: c054f3672a6a56546a2b7563d30251c7, type: 2}
-    _brainsToControl:
-    - {fileID: 11400000, guid: c054f3672a6a56546a2b7563d30251c7, type: 2}
+    _brainsToControl: []
   maxSteps: 0
   trainingConfiguration:
     width: 80
