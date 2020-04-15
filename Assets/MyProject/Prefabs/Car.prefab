@@ -172,7 +172,7 @@ MonoBehaviour:
     agentCameras: []
     agentRenderTextures: []
     maxStep: 5000
-    resetOnDone: 0
+    resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 5
   _spawnPosition: {fileID: 0}

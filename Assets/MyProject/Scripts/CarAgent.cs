@@ -23,7 +23,7 @@ public class CarAgent : Agent
     {
 
         _spawnPosition = transform.parent;
-        _speed = 10f;
+        _speed = 15f;
         _rayPerception = GetComponentInChildren<RayPerception3D>();
 
         _agentSpawner = FindObjectOfType<AgentSpawner>();

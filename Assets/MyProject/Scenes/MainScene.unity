@@ -3269,8 +3269,20 @@ MonoBehaviour:
     type: 3}
   _lapTimeText: {fileID: 964839734}
   _agentSpawnerDrawerManager:
-    num: 2
+    NumAgents: 5
     UsingModel: 0
+    ModelsList:
+    - {fileID: 5022602860645237092, guid: 1711ed5e7b92bc24e9d029b78882310f, type: 3}
+    - {fileID: 5022602860645237092, guid: 261021b1e8667ae4c9851a8cb754b153, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    MaterialsList:
+    - {fileID: 2100000, guid: e7f88a1493a3046458934f58f23dc35a, type: 2}
+    - {fileID: 2100000, guid: 260483cdfc6b14e26823a02f23bd8baa, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!4 &1256393466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2305130482025798369, guid: 8ea7b7023c773ef4589ec3dd3ee00d50,
@@ -4762,7 +4774,8 @@ MonoBehaviour:
   broadcastHub:
     broadcastingBrains:
     - {fileID: 11400000, guid: c054f3672a6a56546a2b7563d30251c7, type: 2}
-    _brainsToControl: []
+    _brainsToControl:
+    - {fileID: 11400000, guid: c054f3672a6a56546a2b7563d30251c7, type: 2}
   maxSteps: 0
   trainingConfiguration:
     width: 80

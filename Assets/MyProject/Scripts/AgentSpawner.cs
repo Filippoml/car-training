@@ -17,7 +17,6 @@ public class AgentSpawnerDrawer : PropertyDrawer
     float lineHeight = 17;
     private bool toogleValue;
 
-
     private void LazyInitializeHub(SerializedProperty property, GUIContent label)
     {
         if (_agentSpawnerParameters != null)
@@ -57,7 +56,8 @@ public class AgentSpawnerDrawer : PropertyDrawer
             position.y += lineHeight;
             var widthEighth = position.width / 8;
             EditorGUI.BeginChangeCheck();
-            _agentSpawnerParameters.NumAgents = EditorGUI.IntField(position, "Number of clones:", _agentSpawnerParameters.NumAgents);
+            
+            _agentSpawnerParameters.NumAgents = EditorGUI.IntField(position, "Number of agents:", _agentSpawnerParameters.NumAgents);
             if (EditorGUI.EndChangeCheck())
             {
                 if(_agentSpawnerParameters.NumAgents > _agentSpawnerParameters.MaterialsList.Count)
@@ -159,14 +159,14 @@ public class AgentSpawner : MonoBehaviour
 
 
             Material customMaterial = _agentSpawnerDrawerManager.MaterialsList[i];
-            if (customMaterial != null)
+            if (customMaterial != null && _agentSpawnerDrawerManager.UsingModel)
             {
                 carObject.GetComponent<MeshRenderer>().material = customMaterial;
             }
 
             CarAgent carAgent = carObject.GetComponent<CarAgent>();
             NNModel customModel = _agentSpawnerDrawerManager.ModelsList[i];
-            if (carAgent != null && customModel != null)
+            if (carAgent != null && customModel != null && _agentSpawnerDrawerManager.UsingModel)
             {
                 LearningBrain customBrain = new LearningBrain();
                 customBrain.brainParameters = carAgent.brain.brainParameters;
