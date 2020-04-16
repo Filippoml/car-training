@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CarAcademy : Academy
 {
+    [HideInInspector]
+    public float Punishment;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +17,11 @@ public class CarAcademy : Academy
     void Update()
     {
         
+    }
+
+    public override void AcademyReset()
+    {
+        base.AcademyReset();
+        Punishment = resetParameters["wall_punishment"];
     }
 }

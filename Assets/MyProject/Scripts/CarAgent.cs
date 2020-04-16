@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CarAgent : Agent
 {
+    private int _checkPointsCounter;
     private float _speed;
 
     [SerializeField]
@@ -17,16 +18,21 @@ public class CarAgent : Agent
 
     private AgentSpawner _agentSpawner;
 
+    private CarAcademy _carAcademy;
+
     public NNModel model;
+
+    private int hits;
 
     private void Awake()
     {
-
         _spawnPosition = transform.parent;
         _speed = 15f;
         _rayPerception = GetComponentInChildren<RayPerception3D>();
 
         _agentSpawner = FindObjectOfType<AgentSpawner>();
+
+        _carAcademy = FindObjectOfType<CarAcademy>();
     }
 
     private void FixedUpdate()
@@ -40,8 +46,10 @@ public class CarAgent : Agent
     {
         if (collision.gameObject.tag == "wall")
         {
-            AddReward(-20f);
+            AddReward(-_carAcademy.Punishment);
             AgentReset();
+            hits++;
+            Debug.Log(name + " hit");
         }
     }
 
@@ -49,14 +57,15 @@ public class CarAgent : Agent
     {
         if (other.gameObject.tag == "end")
         {
-            Debug.Log("lap completed");
+            
             _agentSpawner.AddNewLapTime(_time);
             _time = 0;
             AddReward(50f);
         }
         else
         {
-            AddReward(10f);
+            _checkPointsCounter++;
+            AddReward(10f * _checkPointsCounter);
         }
     }
 
@@ -65,6 +74,7 @@ public class CarAgent : Agent
         transform.position = _spawnPosition.position;
         transform.rotation = Quaternion.identity;
         _time = 0;
+        _checkPointsCounter = 0;
     }
 
 
@@ -102,8 +112,8 @@ public class CarAgent : Agent
         // detectableObjects: List of tags which correspond to object types agent can see
         // startOffset: Starting height offset of ray from center of agent
         // endOffset: Ending height offset of ray from center of agent
-        float rayDistance = 10f;
-        float[] rayAngles = { 30f, 60f, 90f, 120f, 150f };
+        float rayDistance = 15f;
+        float[] rayAngles = { 0, 30f, 60f, 90f, 120f, 150f, 180 };
         string[] detectableObjects = { "wall", "checkpoint" };
         AddVectorObs(_rayPerception.Perceive(rayDistance, rayAngles, detectableObjects, 0, 0f));
 

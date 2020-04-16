@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PenguinLearning
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 23
+    vectorObservationSize: 31
     numStackedVectorObservations: 1
     vectorActionSize: 03000000
     cameraResolutions: []
     vectorActionDescriptions:
     - 
     vectorActionSpaceType: 0
-  model: {fileID: 0}
+  model: {fileID: 5022602860645237092, guid: 68af7f31b8be0e54d92d19eb2d77c4d7, type: 3}
   inferenceDevice: 0

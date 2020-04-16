@@ -172,6 +172,7 @@ public class AgentSpawner : MonoBehaviour
                 customBrain.brainParameters = carAgent.brain.brainParameters;
                 customBrain.model = customModel;
                 carAgent.brain = customBrain;
+                carObject.name = customBrain.model.name;
             }
         }
     }
@@ -181,11 +182,8 @@ public class AgentSpawner : MonoBehaviour
         if(pTime < _bestTime || _bestTime == 0)
         {
             _bestTime = pTime;
-            _lapTimeText.text = _bestTime.ToString("0.00");
-        }
-        else
-        {
-            Debug.Log("current time = " + _bestTime + ", parameter = " + pTime);
+            var ts = TimeSpan.FromSeconds(_bestTime);
+            _lapTimeText.text = "fastest lap "  + string.Format("{0:00}:{1:00}", ts.Seconds, ts.Milliseconds) + " seconds";
         }
     }
 
